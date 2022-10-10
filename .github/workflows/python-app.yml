@@ -10,14 +10,6 @@ on:
   schedule:
     # 定期実行する時間・・・①
     - cron: '0,5,10,15,20,25,30,35,40,45,50,55, * * * *'
-  
-env: |
-  ACCESS_TOKEN_KEY:"${{ secrets.ACCESS_TOKEN_KEY }}"
-  ACCESS_TOKEN_SECRET:"${{ secrets.ACCESS_TOKEN_SECRET }}"
-  CONSUMER_KEY:"${{ secrets.CONSUMER_KEY }}"
-  CONSUMER_SECRET:"${{ secrets.CONSUMER_SECRET }}"
-  SCREEN_NAME_TO_SEND:"${{ secrets.SCREEN_NAME_TO_SEND }}"
-
 jobs:
   build:
 
@@ -40,5 +32,6 @@ jobs:
            echo "ACCESS_TOKEN_SECRET=\"${{ secrets.ACCESS_TOKEN_SECRET }}\"" >> .env
            echo "CONSUMER_KEY=\"${{ secrets.CONSUMER_KEY }}\"" >> .env
            echo "CONSUMER_SECRET=\"${{ secrets.CONSUMER_SECRET }}\"" >> .env
+           echo "SCREEN_NAME_TO_SEND=\"${{ secrets.SCREEN_NAME_TO_SEND }}\"" >> .env
     - name: exec
       run: python ./mercariSearch.py "${{secrets.SEARCH_STRING}}"
