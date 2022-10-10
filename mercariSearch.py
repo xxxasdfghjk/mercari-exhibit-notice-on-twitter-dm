@@ -19,7 +19,7 @@ def sendDirectMessage(sendToScreenName, text):
 
 
 def noticeOnTwitter(item):
-    sendToScreenName = "xxxasdfghjk"
+    sendToScreenName = dotenv_values(".env")["SCREEN_NAME_TO_SEND"]
     text = item["productName"] + "\n" + item["productURL"]
     sendDirectMessage(sendToScreenName, text)
 
