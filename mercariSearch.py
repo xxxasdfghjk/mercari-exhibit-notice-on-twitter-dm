@@ -1,6 +1,8 @@
 import mercari
 import tweepy
 import sys
+import os
+from os.path import join, dirname
 from dotenv import dotenv_values
 
 
@@ -9,7 +11,7 @@ def itemToDict(item):
 
 
 def sendDirectMessage(sendToScreenName, text):
-    envs = dotenv_values(".env")
+    envs = dotenv_values(join(dirname(__file__), '.env'))
     auth = tweepy.OAuthHandler(envs["CONSUMER_KEY"], envs["CONSUMER_SECRET"])
     auth.set_access_token(envs["ACCESS_TOKEN_KEY"],
                           envs["ACCESS_TOKEN_SECRET"])
@@ -19,7 +21,8 @@ def sendDirectMessage(sendToScreenName, text):
 
 
 def noticeOnTwitter(item):
-    sendToScreenName = dotenv_values(".env")["SCREEN_NAME_TO_SEND"]
+    sendToScreenName = dotenv_values(join(dirname(__file__), '.env'))[
+        "SCREEN_NAME_TO_SEND"]
     text = item["productName"] + "\n" + item["productURL"]
     sendDirectMessage(sendToScreenName, text)
 
