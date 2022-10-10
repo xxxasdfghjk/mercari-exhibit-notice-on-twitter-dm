@@ -1,6 +1,6 @@
-from os import access
 import mercari
 import tweepy
+import sys
 from dotenv import dotenv_values
 
 
@@ -25,7 +25,14 @@ def noticeOnTwitter(item):
 
 
 if __name__ == "__main__":
-    searchString = "stream palette"
+    FIND_ITEM_LIMIT = 3
+    if len(sys.argv) <= 1:
+        exit()
+    searchString = sys.argv[1]
     resultGenerator = mercari.search(searchString)
+    count = 0
     for result in resultGenerator:
         noticeOnTwitter(itemToDict(result))
+        count = count + 1
+        if count == FIND_ITEM_LIMIT:
+            break
