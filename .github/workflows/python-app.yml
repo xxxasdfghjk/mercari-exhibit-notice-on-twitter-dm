@@ -34,4 +34,4 @@ jobs:
            echo "CONSUMER_KEY=\"${{ secrets.CONSUMER_KEY }}\"" >> .env
            echo "CONSUMER_SECRET=\"${{ secrets.CONSUMER_SECRET }}\"" >> .env
     - name: exec
-      run: python ./mercariSearch.py
+      run: python ./mercariSearch.py "${{secrets.SEARCH_STRING}}"
