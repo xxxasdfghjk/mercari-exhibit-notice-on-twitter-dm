@@ -31,6 +31,5 @@ jobs:
     - run: echo "ACCESS_TOKEN_SECRET=\"${{ secrets.ACCESS_TOKEN_SECRET }}\"" >> .env
     - run: echo "CONSUMER_KEY=\"${{ secrets.CONSUMER_KEY }}\"" >> .env
     - run: echo "CONSUMER_SECRET=\"${{ secrets.CONSUMER_SECRET }}\"" >> .env
-    - run: ./node_modules/.bin/ts-node ./batch/retweetTimeLineImage.ts 
     - name: exec
       run: python ./mercariSearch.py
